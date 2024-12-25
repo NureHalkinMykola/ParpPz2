@@ -40,7 +40,17 @@ public class timeTest {
         long endTime = System.nanoTime();
 
         System.out.println("Threads: " + threads);
-        System.out.println("Sum: " + sum);
-        System.out.println("Time: " + (endTime - startTime) / 1000000 + " ms");
+        System.out.println("Sum paralel: " + sum);
+        System.out.println("Time paralel: " + (endTime - startTime) / 1000000 + " ms");
+
+        startTime = System.nanoTime();
+        sum = 0;
+        for (int i = 0; i < size; i++) {
+            sum += data[i];
+        }
+        endTime = System.nanoTime();
+
+        System.out.println("Sum no parallel: " + sum);
+        System.out.println("Time no parallel: " + (endTime - startTime) / 1000000 + " ms");
     }
 }
