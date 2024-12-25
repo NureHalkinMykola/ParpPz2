@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	threads := 1
+	threads := 5
 	runtime.GOMAXPROCS(threads)
 	size := 1000000000
 	data := make([]int, size)
@@ -46,6 +46,17 @@ func main() {
 	endTime := time.Now()
 
 	fmt.Printf("Threads: %d\n", threads)
-	fmt.Printf("Sum: %d\n", sum)
-	fmt.Printf("Time: %v\n", endTime.Sub(startTime))
+	fmt.Printf("Sum paralel: %d\n", sum)
+	fmt.Printf("Time paralel: %v\n", endTime.Sub(startTime))
+
+	startTime = time.Now()
+	sum = 0
+	for i := 0; i < size; i++ {
+		sum += int64(data[i])
+	}
+	endTime = time.Now()
+
+	fmt.Printf("Sum no paralel: %d\n", sum)
+	fmt.Printf("Time no paralel: %v\n", endTime.Sub(startTime))
 }
+
